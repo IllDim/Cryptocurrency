@@ -108,7 +108,7 @@ class CryptoPulseApp(ctk.CTk):
         ctk.set_default_color_theme("dark-blue")
 
         self.title("CryptoPulse — Монитор криптовалют")
-        self.geometry("920x700+600+300")
+        self.geometry("920x700+400+100")
         self.minsize(720, 500)
 
         self._build_header()
@@ -119,7 +119,7 @@ class CryptoPulseApp(ctk.CTk):
         self.after(200, self.refresh_data)
         self.after(1000, self._auto_refresh_tick)
 
-    # ---------- Построение интерфейса ----------
+    # Построение интерфейса
     def _build_header(self):
         header = ctk.CTkFrame(self, fg_color="transparent", height=60)
         header.pack(fill="x", padx=20, pady=(15, 5))
@@ -135,13 +135,13 @@ class CryptoPulseApp(ctk.CTk):
 
         subtitle = ctk.CTkLabel(
             header,
-            text="  живой криптотрекер",
+            text=" - живой криптотрекер",
             font=ctk.CTkFont(size=13),
             text_color="#777777"
         )
         subtitle.pack(side="left", padx=(4, 0))
 
-        # Поиск
+        # # Поиск
         self.search_entry = ctk.CTkEntry(
             header,
             placeholder_text="Поиск по тикеру...",
@@ -195,7 +195,7 @@ class CryptoPulseApp(ctk.CTk):
         )
         self.countdown.pack(side="right")
 
-    # ---------- Работа с данными ----------
+    # Работа с данными
     def refresh_data(self):
         """Запускает обновление в отдельном потоке."""
         if self._is_loading:
@@ -266,7 +266,7 @@ class CryptoPulseApp(ctk.CTk):
             # (данные хранятся в карточках, поэтому просто перезагружаем)
             self.refresh_data()
 
-    # ---------- Автообновление ----------
+    # Автообновление
     def _auto_refresh_tick(self):
         """Таймер автообновления."""
         if not self._is_loading:
